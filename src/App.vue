@@ -1,11 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <header>
+    <nav>
+      <RouterLink to="/">Accueil</RouterLink>
+      <template v-if="authStore.isAuthenticated">
+        <span>{{ authStore.email }}</span>
+        <button type="button" @click="authStore.logout()">Se déconnecter</button>
+      </template>
+      <template v-else>
+        <RouterLink to="/login">Connexion</RouterLink>
+        <RouterLink to="/register">Inscription</RouterLink>
+      </template>
+    </nav>
+  </header>
+
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
