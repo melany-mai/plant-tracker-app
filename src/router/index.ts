@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import PlantFormView from '@/views/PlantFormView.vue'
 import { useAuthStore } from '@/stores/auth'
 
 declare module 'vue-router' {
@@ -18,6 +19,19 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomeView, meta: { requiresAuth: true } },
     { path: '/login', name: 'login', component: LoginView, meta: { requiresGuest: true } },
     { path: '/register', name: 'register', component: RegisterView, meta: { requiresGuest: true } },
+    {
+      path: '/plants/new',
+      name: 'plant-create',
+      component: PlantFormView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/plants/:id/edit',
+      name: 'plant-edit',
+      component: PlantFormView,
+      props: true,
+      meta: { requiresAuth: true },
+    },
   ],
 })
 
