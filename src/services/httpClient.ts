@@ -2,7 +2,7 @@ const API_URL = import.meta.env.VITE_API_URL
 
 type RequestFormat = 'json' | 'ld+json'
 
-interface RequestOptions {
+export interface RequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   body?: unknown
   format?: RequestFormat
